@@ -50,6 +50,7 @@ btn12.place(x = 20,y = 90,width = 50,height = 50)
 fruitlists = [btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12]
 
 #是否开启循环的标志
+lagecy=0.15
 isloop = False
 #是否停止标志
 stopsign=False    #是否接收到 stop信号
@@ -66,7 +67,7 @@ def round():
         i=stopid
     while True:
         #延时操作
-        time.sleep(0.2)
+        time.sleep(lagecy)
         #将所有的组件背景变为白色
         for x in fruitlists:
             x['bg'] = 'white'
@@ -84,10 +85,14 @@ def round():
             break
 def stop1():
     global stopsign
+    global lagecy
 
     if stopsign ==True:#当多接收stop1（）函数时 ，直接跳过
         return
-    stopsign=True
+    lagecy=0.5
+    t = threading.Timer(3,stopping)
+    t.start()
+
 #建立一个新线程的函数
 def newtask():
     global isloop
@@ -101,9 +106,9 @@ def newtask():
     # 设置循环开始标志
     isloop = True
 
-
-
-
+def stopping():
+        global stopsign
+        stopsign=True
 
 #开始按钮
 btn_start = tkinter.Button(root,text = 'start',command = newtask)
