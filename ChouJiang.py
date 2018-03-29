@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import tkinter
+
 # 导入线程模块
 import threading
 import time  # 导入代码的sleep 代码休眠
@@ -85,6 +86,7 @@ def round():
         if stopsign == True:  # 当停止标志 为真时
             isloop = False
             stopid = i  # 赋值stopid
+            btn_start.focus_set()
             break
 
 
@@ -127,7 +129,7 @@ def newtask():
     t.start()
     # 设置循环开始标志
     isloop = True
-
+    btn_stop.focus_set()
 
 def stopped():
     global stopsign
@@ -138,20 +140,28 @@ def slowdown(x):
     global lagecy
     lagecy = x
 
+def newtask1():
+    tkinter.Message.showinfo("Python command", "人生苦短、我用Python")
 
-def keyevent(event):
-        newtask()
+def sEventInfo(event):
+    newtask()
 
+def dEventInfo(event):
+        stop1()
 
 # 开始按钮
 
 
+
 btn_start = tkinter.Button(root, text='start', command=newtask)
 btn_start.place(x=90, y=125, width=50, height=50)
-btn_start.bind('<Return>', keyevent)
+btn_start.bind('<s>', sEventInfo)
 
 # 停止按钮
 btn_stop = tkinter.Button(root, text='stop', command=stop1)
 btn_stop.place(x=160, y=125, width=50, height=50)
+btn_stop.bind('<d>', dEventInfo)
 
+
+btn_start.focus_set()
 root.mainloop()

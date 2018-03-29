@@ -1,0 +1,1 @@
+print('\n'.join([''.join([('Python!'[(x - y) % 7] if 0 >= ((x * 0.05) ** 2 + (y * 0.1) ** 2 - 1) ** 3 - (x * 0.05) ** 2 * (y * 0.1) ** 3 else ' ') for x in range(-30, 30)]) for y in range(15, -15, -1)]))
