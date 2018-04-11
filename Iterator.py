@@ -8,3 +8,5 @@ print(l)
 
 var = [i *i for i in l]
 print (var)
+
+
